@@ -1,10 +1,14 @@
 import React, { Fragment, useState } from "react";
 import axios from "axios";
+import Message from "./Message";
+import Progress from "./Progress";
 
 export const FileUpload = () => {
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("Choose File");
   const [uploadedFile, setUploadedFile] = useState({});
+  const [message, setMessage] = useState("");
+  const [uploadPercentage, setUploadPercentage] = useState(0);
 
   const onChange = (e) => {
     setFile(e.target.files[0]);
@@ -21,14 +25,24 @@ export const FileUpload = () => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        onUploadProgress: (ProgressEvent) => {
+          setUploadPercentage(
+            parseInt(
+              Math.round((ProgressEvent.loaded * 100) / ProgressEvent.total)
+            )
+          );
+          // Clear percentage
+          setTimeout(() => setUploadPercentage(0), 10000);
+        },
       });
 
       const { fileName, filePath } = res.data;
 
       setUploadedFile({ fileName, filePath });
+      setMessage("File Uploaded");
     } catch (err) {
       if (err.response.status === 500) {
-        console.log("There was a problem with the server");
+        setMessage("There was a problem with the server");
       } else {
         console.log(err.response.data.msg);
       }
@@ -37,6 +51,7 @@ export const FileUpload = () => {
 
   return (
     <Fragment>
+      {message ? <Message msg={message} /> : null}
       <form onSubmit={onSubmit}>
         <div className="custom-file mb-4">
           <input
@@ -50,6 +65,8 @@ export const FileUpload = () => {
           </label>
         </div>
 
+        <Progress percentage={uploadPercentage} />
+
         <input
           type="submit"
           value="Upload"
@@ -60,11 +77,7 @@ export const FileUpload = () => {
         <div className="row mt-5">
           <div className="col-md-6 m-auto">
             <h3 className="text-center">{uploadedFile.fileName}</h3>
-            <img
-              style={{ width: '100%' }}
-              src={uploadedFile.filePath}
-              alt=""
-            />
+            <img style={{ width: "100%" }} src={uploadedFile.filePath} alt="" />
           </div>
         </div>
       ) : null}
