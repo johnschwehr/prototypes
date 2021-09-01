@@ -25,7 +25,4 @@ app.post("/upload", (req, res) => {
   });
 });
 
-// Store Order Endpoint
-//app.post("/store_order", (req, res) => {});
-
 app.listen(5000, () => console.log("Server started."));
