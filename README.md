@@ -1,3 +1,1 @@
-# projectc - brickmakr v0.1-alpha
-
-brickmakr is the platform for you to analyze your Amazon Seller Central data on.
+# projectc - brickmakr - upload prototype v0.1-alpha
