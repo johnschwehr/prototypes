@@ -38,6 +38,9 @@ export const FileUpload = () => {
 
       const { fileName, filePath } = res.data;
 
+      console.log(fileName);
+      console.log(filePath);
+
       setUploadedFile({ fileName, filePath });
       setMessage("File Uploaded");
     } catch (err) {
