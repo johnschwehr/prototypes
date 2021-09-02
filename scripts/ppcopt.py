@@ -58,10 +58,10 @@ elif algo == "percentage":
     for threshold in acos_threshold:
         if threshold[1] is not None:
             mod_workbook.loc[(mod_workbook.ACoS > threshold[0]) & (mod_workbook.ACoS <= threshold[1]), 'Max Bid'] = round(mod_workbook.loc[(
-                mod_workbook.ACoS > threshold[0]) & (mod_workbook.ACoS <= threshold[1]), 'Max Bid'] * (1 + threshold[2]),2)
+                mod_workbook.ACoS > threshold[0]) & (mod_workbook.ACoS <= threshold[1]), 'Max Bid'] * (1 + threshold[2]), 2)
         else:
             mod_workbook.loc[mod_workbook.ACoS > threshold[0],
-                             'Max Bid'] = round(mod_workbook.loc[mod_workbook.ACoS > threshold[0], 'Max Bid'] * (1 + threshold[2]),2)
+                             'Max Bid'] = round(mod_workbook.loc[mod_workbook.ACoS > threshold[0], 'Max Bid'] * (1 + threshold[2]), 2)
 
     # Modify max bids according to rules: clicks and no sales - percentage
     cns_threshold = [[5, 8, -0.03], [9, 12, -0.05], [13, None, -0.1]]
@@ -69,10 +69,10 @@ elif algo == "percentage":
     for threshold in cns_threshold:
         if threshold[1] is not None:
             mod_workbook.loc[(mod_workbook.Sales == 0) & (mod_workbook.Clicks > threshold[0]) & (mod_workbook.Clicks <= threshold[1]), 'Max Bid'] = round(mod_workbook.loc[(
-                mod_workbook.Sales == 0) & (mod_workbook.Clicks > threshold[0]) & (mod_workbook.Clicks <= threshold[1]), 'Max Bid'] * (1 + threshold[2]),2)
+                mod_workbook.Sales == 0) & (mod_workbook.Clicks > threshold[0]) & (mod_workbook.Clicks <= threshold[1]), 'Max Bid'] * (1 + threshold[2]), 2)
         else:
             mod_workbook.loc[(mod_workbook.Sales == 0) & (mod_workbook.Clicks > threshold[0]), 'Max Bid'] = round(mod_workbook.loc[(
-                mod_workbook.Sales == 0) & (mod_workbook.Clicks > threshold[0]), 'Max Bid'] * (1 + threshold[2]),2)
+                mod_workbook.Sales == 0) & (mod_workbook.Clicks > threshold[0]), 'Max Bid'] * (1 + threshold[2]), 2)
 
 # Revert '%' removal to meet upload conditions
 mod_workbook['ACoS'] = mod_workbook['ACoS'].astype('str') + '%'
