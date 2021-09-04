@@ -15,7 +15,8 @@ app.post("/upload", (req, res) => {
 
   console.log(__dirname);
 
-  file.mv(`${__dirname}/upload/client/public/uploads/${file.name}`, (err) => {
+  //file.mv(`${__dirname}/upload/client/public/uploads/${file.name}`, (err) => {
+  file.mv(`C:/Users/schwe/OneDrive/Documents/dev/projecte/src/api/orders/uploads/${file.name}`, (err) => {
     if (err) {
       console.error(err);
       return res.status(500).send(err);
