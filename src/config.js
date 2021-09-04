@@ -38,7 +38,7 @@ const config = {
   test: { },
   development: {
     mongo: {
-      uri: 'mongodb://localhost/brickmakr-dev',
+      uri: process.env.MONGODB_URI || 'mongodb://localhost/brickmakr-dev',
       options: {
         debug: true
       }
