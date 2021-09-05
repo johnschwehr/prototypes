@@ -3,6 +3,7 @@ import { middleware as query } from "querymen";
 import { middleware as body } from "bodymen";
 import { create, index, show, update, destroy } from "./controller";
 import { schema } from "./model";
+import { importOrders } from "./import";
 export Orders, { schema } from "./model";
 
 const router = new Router();
@@ -35,6 +36,22 @@ const {
   fulfillmentChannel,
   salesChannel,
 } = schema.tree;
+
+/** 
+ * @api {post} /orders/import Import orders using uploaded file
+ * @apiName ImportOrders
+ * @apiGroup Orders
+ * @apiParam fileName Uploaded file name.
+ * @apiSuccess {Object} orders Orders's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Orders not found.
+ * 
+ */
+router.post("/upload", (req, res) => {
+  console.log('hit upload');
+  importOrders(`${__dirname}/uploads/${req.body.fileName}`);
+  res.json({})
+});
 
 /**
  * @api {post} /orders Create orders
