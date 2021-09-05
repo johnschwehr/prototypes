@@ -5,13 +5,13 @@ const ordersSchema = new Schema({
     type: String
   },
   purchaseDate: {
-    type: String
+    type: Date
   },
   paymentsDate: {
-    type: String
+    type: Date
   },
   shipmentDate: {
-    type: String
+    type: Date
   },
   sku: {
     type: String
@@ -20,28 +20,28 @@ const ordersSchema = new Schema({
     type: String
   },
   shippedQuantity: {
-    type: String
+    type: Number
   },
   currency: {
     type: String
   },
   itemPrice: {
-    type: String
+    type: Number
   },
   itemTax: {
-    type: String
+    type: Number
   },
   shippingPrice: {
-    type: String
+    type: Number
   },
   shippingTax: {
-    type: String
+    type: Number
   },
   giftWrapPrice: {
-    type: String
+    type: Number
   },
   giftWrapTax: {
-    type: String
+    type: Number
   },
   shipServiceLevel: {
     type: String
@@ -59,10 +59,10 @@ const ordersSchema = new Schema({
     type: String
   },
   itemPromoDiscount: {
-    type: String
+    type: Number
   },
   shipmentPromoDiscount: {
-    type: String
+    type: Number
   },
   carrier: {
     type: String
@@ -71,7 +71,7 @@ const ordersSchema = new Schema({
     type: String
   },
   estArrivalDate: {
-    type: String
+    type: Date
   },
   fc: {
     type: String
