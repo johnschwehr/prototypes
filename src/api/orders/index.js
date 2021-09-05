@@ -48,7 +48,6 @@ const {
  * 
  */
 router.post("/upload", (req, res) => {
-  console.log('hit upload');
   importOrders(`${__dirname}/uploads/${req.body.fileName}`);
   res.json({})
 });
