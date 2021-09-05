@@ -3,29 +3,7 @@ const exceljs = require("exceljs");
 
 import { Orders } from ".";
 
-function csvToXlsx(filePath) {
-  let fileName = path.basename(filePath).split(".").slice(0, -1).join(".");
-  let source = filePath;
-  var destination = path.join(
-    __dirname,
-    "/uploads/converted-".concat(fileName).concat(".xlsx")
-  );
-
-  try {
-    convertCsvToXlsx(source, destination);
-  } catch (err) {
-    console.error(err.toString());
-  }
-
-  return destination;
-}
-
 export async function importOrders(filePath) {
-  var newFilePath = "";
-  path.extname(filePath) === ".csv"
-    ? (newFilePath = csvToXlsx(filePath))
-    : (newFilePath = filePath);
-
   const workbook = new exceljs.Workbook();
   await workbook.xlsx.readFile(newFilePath);
 
