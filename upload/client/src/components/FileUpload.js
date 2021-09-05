@@ -43,6 +43,15 @@ export const FileUpload = () => {
 
       setUploadedFile({ fileName, filePath });
       setMessage("File Uploaded");
+
+      // send to brickmakr API
+      const apiData = new URLSearchParams({ 'fileName': fileName });
+
+      await axios.post("http://localhost:9000/orders/upload", apiData, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
     } catch (err) {
       if (err.response.status === 500) {
         setMessage("There was a problem with the server");
