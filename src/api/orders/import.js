@@ -1,5 +1,4 @@
 const path = require("path");
-const convertCsvToXlsx = require("@aternus/csv-to-xlsx");
 const exceljs = require("exceljs");
 
 import { Orders } from ".";
