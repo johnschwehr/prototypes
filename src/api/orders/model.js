@@ -4,6 +4,21 @@ const ordersSchema = new Schema({
   orderId: {
     type: String
   },
+  merchantOrderId: {
+    type: String
+  },
+  shipmentId: {
+    type: String
+  },
+  shipmentItemId: {
+    type: String
+  },
+  orderItemId: {
+    type: String
+  },
+  merchantOrderItemId: {
+    type: String
+  },
   purchaseDate: {
     type: Date
   },
@@ -96,6 +111,11 @@ ordersSchema.methods = {
       // simple view
       id: this.id,
       orderId: this.orderId,
+      merchantOrderId: this.merchantOrderId,
+      shipmentId: this.shipmentId,
+      shipmentItemId: this.shipmentItemId,
+      orderItemId: this.orderItemId,
+      merchantOrderItemId: this.merchantOrderItemId,
       purchaseDate: this.purchaseDate,
       paymentsDate: this.paymentsDate,
       shipmentDate: this.shipmentDate,
