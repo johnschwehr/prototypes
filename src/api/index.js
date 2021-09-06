@@ -1,9 +1,11 @@
 import { Router } from 'express'
 import orders from './orders'
+import ppc from './ppc'
 
 const router = new Router()
 
 router.use('/orders', orders)
+router.use('/ppcs', ppc)
 
 /**
  * @apiDefine master Master access only

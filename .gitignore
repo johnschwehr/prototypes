@@ -11,4 +11,5 @@ npm-debug.log
 .nyc_output
 coverage
 cassettes
-src/api/orders/uploads
+src/api/orders/uploads/*
+src/api/ppc/uploads/*
