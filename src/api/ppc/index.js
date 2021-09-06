@@ -3,10 +3,26 @@ import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
+import { importPpc } from "./import";
 export Ppc, { schema } from './model'
 
 const router = new Router()
-const { date, portfolio, currency, campaign, adGroup, targeting, matchType, impressions, clicks, ctr, cpc, spend, tacos, troas, 7dTotalSales, 7dTotalOrders, 7dTotalUnits, 7dConversion, 7dAdvertisedSkuUnits, 7dOtherSkuUnits, 7dAdvertisedSkuSales, 7dOtherSkuSales } = schema.tree
+const { date, portfolio, currency, campaign, adGroup, targeting, matchType, impressions, clicks, ctr, cpc, spend, tacos, troas, d7TotalSales, d7TotalOrders, d7TotalUnits, d7Conversion, d7AdvertisedSkuUnits, d7OtherSkuUnits, d7AdvertisedSkuSales, d7OtherSkuSales } = schema.tree
+
+/** 
+ * @api {post} /ppcs/import Import ppc using uploaded file
+ * @apiName ImportPpc
+ * @apiGroup Ppc
+ * @apiParam fileName Uploaded file name.
+ * @apiSuccess {Object} ppc Ppc's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Ppc not found.
+ * 
+ */
+ router.post("/upload", (req, res) => {
+  importPpc(`${__dirname}/uploads/${req.body.fileName}`);
+  res.json({})
+});
 
 /**
  * @api {post} /ppcs Create ppc
@@ -26,20 +42,20 @@ const { date, portfolio, currency, campaign, adGroup, targeting, matchType, impr
  * @apiParam spend Ppc's spend.
  * @apiParam tacos Ppc's tacos.
  * @apiParam troas Ppc's troas.
- * @apiParam 7dTotalSales Ppc's 7dTotalSales.
- * @apiParam 7dTotalOrders Ppc's 7dTotalOrders.
- * @apiParam 7dTotalUnits Ppc's 7dTotalUnits.
- * @apiParam 7dConversion Ppc's 7dConversion.
- * @apiParam 7dAdvertisedSkuUnits Ppc's 7dAdvertisedSkuUnits.
- * @apiParam 7dOtherSkuUnits Ppc's 7dOtherSkuUnits.
- * @apiParam 7dAdvertisedSkuSales Ppc's 7dAdvertisedSkuSales.
- * @apiParam 7dOtherSkuSales Ppc's 7dOtherSkuSales.
+ * @apiParam d7TotalSales Ppc's d7TotalSales.
+ * @apiParam d7TotalOrders Ppc's d7TotalOrders.
+ * @apiParam d7TotalUnits Ppc's d7TotalUnits.
+ * @apiParam d7Conversion Ppc's d7Conversion.
+ * @apiParam d7AdvertisedSkuUnits Ppc's d7AdvertisedSkuUnits.
+ * @apiParam d7OtherSkuUnits Ppc's d7OtherSkuUnits.
+ * @apiParam d7AdvertisedSkuSales Ppc's d7AdvertisedSkuSales.
+ * @apiParam d7OtherSkuSales Ppc's d7OtherSkuSales.
  * @apiSuccess {Object} ppc Ppc's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Ppc not found.
  */
 router.post('/',
-  body({ date, portfolio, currency, campaign, adGroup, targeting, matchType, impressions, clicks, ctr, cpc, spend, tacos, troas, 7dTotalSales, 7dTotalOrders, 7dTotalUnits, 7dConversion, 7dAdvertisedSkuUnits, 7dOtherSkuUnits, 7dAdvertisedSkuSales, 7dOtherSkuSales }),
+  body({ date, portfolio, currency, campaign, adGroup, targeting, matchType, impressions, clicks, ctr, cpc, spend, tacos, troas, d7TotalSales, d7TotalOrders, d7TotalUnits, d7Conversion, d7AdvertisedSkuUnits, d7OtherSkuUnits, d7AdvertisedSkuSales, d7OtherSkuSales }),
   create)
 
 /**
@@ -84,20 +100,20 @@ router.get('/:id',
  * @apiParam spend Ppc's spend.
  * @apiParam tacos Ppc's tacos.
  * @apiParam troas Ppc's troas.
- * @apiParam 7dTotalSales Ppc's 7dTotalSales.
- * @apiParam 7dTotalOrders Ppc's 7dTotalOrders.
- * @apiParam 7dTotalUnits Ppc's 7dTotalUnits.
- * @apiParam 7dConversion Ppc's 7dConversion.
- * @apiParam 7dAdvertisedSkuUnits Ppc's 7dAdvertisedSkuUnits.
- * @apiParam 7dOtherSkuUnits Ppc's 7dOtherSkuUnits.
- * @apiParam 7dAdvertisedSkuSales Ppc's 7dAdvertisedSkuSales.
- * @apiParam 7dOtherSkuSales Ppc's 7dOtherSkuSales.
+ * @apiParam d7TotalSales Ppc's d7TotalSales.
+ * @apiParam d7TotalOrders Ppc's d7TotalOrders.
+ * @apiParam d7TotalUnits Ppc's d7TotalUnits.
+ * @apiParam d7Conversion Ppc's d7Conversion.
+ * @apiParam d7AdvertisedSkuUnits Ppc's d7AdvertisedSkuUnits.
+ * @apiParam d7OtherSkuUnits Ppc's d7OtherSkuUnits.
+ * @apiParam d7AdvertisedSkuSales Ppc's d7AdvertisedSkuSales.
+ * @apiParam d7OtherSkuSales Ppc's d7OtherSkuSales.
  * @apiSuccess {Object} ppc Ppc's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Ppc not found.
  */
 router.put('/:id',
-  body({ date, portfolio, currency, campaign, adGroup, targeting, matchType, impressions, clicks, ctr, cpc, spend, tacos, troas, 7dTotalSales, 7dTotalOrders, 7dTotalUnits, 7dConversion, 7dAdvertisedSkuUnits, 7dOtherSkuUnits, 7dAdvertisedSkuSales, 7dOtherSkuSales }),
+  body({ date, portfolio, currency, campaign, adGroup, targeting, matchType, impressions, clicks, ctr, cpc, spend, tacos, troas, d7TotalSales, d7TotalOrders, d7TotalUnits, d7Conversion, d7AdvertisedSkuUnits, d7OtherSkuUnits, d7AdvertisedSkuSales, d7OtherSkuSales }),
   update)
 
 /**
