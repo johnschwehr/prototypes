@@ -8,7 +8,7 @@ export async function importPpc(filePath) {
   try {
     path.extname(filePath) === ".csv"
       ? await workbook.csv.readFile(filePath)
-      : await workbook.xlsx.readFile(newFilePath);
+      : await workbook.xlsx.readFile(filePath);
 
     const worksheet = workbook.worksheets[0];
 
