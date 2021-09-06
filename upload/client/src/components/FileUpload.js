@@ -47,7 +47,7 @@ export const FileUpload = () => {
       // send to brickmakr API
       const apiData = new URLSearchParams({ 'fileName': fileName });
 
-      await axios.post("http://localhost:9000/orders/upload", apiData, {
+      await axios.post("http://localhost:9000/ppcs/upload", apiData, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
