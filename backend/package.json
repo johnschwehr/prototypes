@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "PPC Optimization Automation - backend",
+  "main": "call_ppcopt.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnschwehr/projecta.git"
+  },
+  "author": "John Schwehr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnschwehr/projecta/issues"
+  },
+  "homepage": "https://github.com/johnschwehr/projecta#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
